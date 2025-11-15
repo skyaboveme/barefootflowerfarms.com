@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Us - Barefoot Flower Farms" description="Learn about our story, our passion for growing beautiful flowers, and our commitment to sustainable farming practices.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Story</h1>
+      <p class="page-subtitle">Rooted in passion, blooming with purpose</p>
+    </div>
+  </section>
+
+  <section class="about-content">
+    <div class="container">
+      <div class="story-section">
+        <div class="story-text">
+          <h2>How It All Began</h2>
+          <p>
+            Barefoot Flower Farms started with a simple dream: to grow the most beautiful,
+            fragrant flowers while walking barefoot through rich, healthy soil. In 2015,
+            we planted our first seeds on a small plot of land, never imagining how those
+            tiny beginnings would blossom into something truly magical.
+          </p>
+          <p>
+            What started as a hobby quickly grew into a passion. We spent countless hours
+            learning about heirloom varieties, sustainable growing practices, and the ancient
+            art of flower farming. Each season taught us something new, and each bloom
+            reminded us why we fell in love with this work.
+          </p>
+        </div>
+        <div class="story-image">
+          <div class="image-placeholder">
+            <span>🌾</span>
+            <span>🌻</span>
+            <span>🌷</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="values-section">
+        <h2>What We Believe</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3>Earth-Friendly Farming</h3>
+            <p>
+              We believe in working with nature, not against it. Our farm uses no synthetic
+              pesticides or fertilizers. Instead, we rely on companion planting, composting,
+              and natural pest control methods.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3>Community Connection</h3>
+            <p>
+              Flowers have a unique way of bringing people together. We're proud to be part
+              of our local community, supplying blooms for weddings, celebrations, and
+              everyday moments of joy.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌱</div>
+            <h3>Slow Flower Movement</h3>
+            <p>
+              We're advocates for locally grown, seasonal flowers. By choosing our blooms,
+              you're supporting sustainable agriculture and reducing the carbon footprint
+              of your floral arrangements.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-section">
+        <h2>Meet the Farmers</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-photo">👩‍🌾</div>
+            <h3>Emma Green</h3>
+            <p class="member-role">Founder & Head Grower</p>
+            <p>
+              Emma's love for flowers began in her grandmother's garden. With a degree in
+              horticulture and years of experience, she leads our growing operations with
+              expertise and heart.
+            </p>
+          </div>
+          <div class="team-member">
+            <div class="member-photo">👨‍🌾</div>
+            <h3>Michael Green</h3>
+            <p class="member-role">Co-Founder & Operations</p>
+            <p>
+              Michael brings his background in sustainable agriculture to ensure our farm
+              runs smoothly. He manages everything from soil health to harvest logistics.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Visit Our Farm</h2>
+        <p>
+          We love welcoming visitors to our farm! Come see where your flowers grow,
+          learn about our practices, and experience the magic of a working flower farm.
+        </p>
+        <a href="/contact" class="btn btn-primary">Schedule a Visit</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-dark) 100%);
+    color: var(--color-cream);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    color: var(--color-cream);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .page-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    opacity: 0.9;
+  }
+
+  .about-content {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .story-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .story-text h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .story-text p {
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+  }
+
+  .story-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-placeholder {
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    border-radius: 20px;
+    padding: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 4rem;
+  }
+
+  .values-section {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .values-section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .value-card {
+    text-align: center;
+    padding: var(--spacing-md);
+  }
+
+  .value-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .value-card h3 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .value-card p {
+    color: var(--color-earth);
+    line-height: 1.7;
+  }
+
+  .team-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .team-section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .team-member {
+    background: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .member-photo {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .team-member h3 {
+    margin-bottom: 0;
+  }
+
+  .member-role {
+    color: var(--color-terracotta);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .team-member p:last-child {
+    color: var(--color-earth);
+    line-height: 1.7;
+  }
+
+  .cta-section {
+    background: var(--color-blush);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .cta-section p {
+    color: var(--color-earth);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .story-section {
+      grid-template-columns: 1fr;
+    }
+
+    .story-image {
+      order: -1;
+    }
+  }
+</style>

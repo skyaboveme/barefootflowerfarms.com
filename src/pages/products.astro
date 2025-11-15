@@ -1,0 +1,339 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: "Garden Roses",
+    emoji: "🌹",
+    description: "Fragrant heirloom roses in stunning varieties including blush, cream, and deep red.",
+    price: "$32.99",
+    unit: "dozen",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Sunflowers",
+    emoji: "🌻",
+    description: "Bright, cheerful blooms that bring instant sunshine to any space.",
+    price: "$18.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Lavender",
+    emoji: "🪻",
+    description: "Aromatic purple blooms perfect for arrangements or drying.",
+    price: "$14.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Dahlia Mix",
+    emoji: "🌸",
+    description: "Show-stopping dinner plate dahlias in vibrant colors.",
+    price: "$28.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Sweet Peas",
+    emoji: "🌺",
+    description: "Delicate, fragrant blooms in pastel shades.",
+    price: "$22.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Ranunculus",
+    emoji: "🏵️",
+    description: "Layers of delicate petals in romantic colors.",
+    price: "$26.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Tulips",
+    emoji: "🌷",
+    description: "Classic spring favorites in an array of colors.",
+    price: "$19.99",
+    unit: "dozen",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Zinnias",
+    emoji: "💐",
+    description: "Bold, vibrant blooms perfect for summer arrangements.",
+    price: "$16.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "Herb Seedlings",
+    emoji: "🌿",
+    description: "Basil, rosemary, thyme, and more. Ready to plant.",
+    price: "$4.99",
+    unit: "pot",
+    category: "Plants"
+  },
+  {
+    name: "Tomato Starts",
+    emoji: "🍅",
+    description: "Heirloom varieties ready for your garden.",
+    price: "$5.99",
+    unit: "pot",
+    category: "Plants"
+  },
+  {
+    name: "Pollinator Garden Mix",
+    emoji: "🐝",
+    description: "Seeds for a garden that attracts bees and butterflies.",
+    price: "$12.99",
+    unit: "packet",
+    category: "Seeds"
+  },
+  {
+    name: "Wildflower Seeds",
+    emoji: "🌼",
+    description: "Native wildflower mix for natural meadow gardens.",
+    price: "$9.99",
+    unit: "packet",
+    category: "Seeds"
+  }
+];
+
+const categories = [...new Set(products.map(p => p.category))];
+---
+
+<Layout title="Shop - Barefoot Flower Farms" description="Browse our selection of fresh-cut flowers, plants, and seeds. All grown locally with sustainable practices.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Products</h1>
+      <p class="page-subtitle">Fresh from our fields to your home</p>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <div class="intro-text">
+        <p>
+          Everything we sell is grown right here on our farm using sustainable practices.
+          Our flowers are cut fresh and our plants are nurtured with care. Availability
+          varies by season, so contact us to confirm what's currently blooming.
+        </p>
+      </div>
+
+      {categories.map(category => (
+        <div class="category-section">
+          <h2>{category}</h2>
+          <div class="products-grid">
+            {products.filter(p => p.category === category).map(product => (
+              <div class="product-card">
+                <div class="product-image">
+                  <span class="product-emoji">{product.emoji}</span>
+                </div>
+                <div class="product-info">
+                  <h3>{product.name}</h3>
+                  <p class="product-description">{product.description}</p>
+                  <div class="product-footer">
+                    <span class="price">{product.price} / {product.unit}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="ordering-info">
+        <h2>How to Order</h2>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <h3>Contact Us</h3>
+            <p>Reach out via phone, email, or our contact form to place your order.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📅</div>
+            <h3>Schedule Pickup</h3>
+            <p>Choose a convenient time to pick up your order at the farm.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🚗</div>
+            <h3>Local Delivery</h3>
+            <p>We offer delivery within 15 miles of our farm for orders over $50.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-orders">
+        <h2>Custom & Wholesale Orders</h2>
+        <p>
+          Planning a wedding, special event, or need flowers for your business?
+          We love working on custom orders! Contact us to discuss your needs and
+          we'll create something beautiful just for you.
+        </p>
+        <a href="/contact" class="btn btn-primary">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-earth) 100%);
+    color: var(--color-cream);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    color: var(--color-cream);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .page-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    opacity: 0.9;
+  }
+
+  .products-section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .intro-text {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+    text-align: center;
+  }
+
+  .intro-text p {
+    color: var(--color-earth);
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .category-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .category-section h2 {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 3px solid var(--color-sage);
+    display: inline-block;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .product-card {
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(125, 148, 113, 0.15);
+  }
+
+  .product-image {
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .product-emoji {
+    font-size: 4rem;
+  }
+
+  .product-info {
+    padding: var(--spacing-sm);
+  }
+
+  .product-info h3 {
+    margin: 0 0 var(--spacing-xs);
+    font-size: 1.3rem;
+  }
+
+  .product-description {
+    color: var(--color-earth);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    color: var(--color-terracotta);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .ordering-info {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .ordering-info h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .info-card {
+    text-align: center;
+    padding: var(--spacing-sm);
+  }
+
+  .info-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .info-card h3 {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.2rem;
+  }
+
+  .info-card p {
+    color: var(--color-earth);
+    line-height: 1.6;
+  }
+
+  .custom-orders {
+    background: var(--color-blush);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .custom-orders h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .custom-orders p {
+    color: var(--color-earth);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-md);
+    line-height: 1.7;
+  }
+</style>

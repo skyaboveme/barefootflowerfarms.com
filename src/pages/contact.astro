@@ -1,0 +1,315 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us - Barefoot Flower Farms" description="Get in touch with Barefoot Flower Farms. Visit our farm, place an order, or inquire about custom arrangements.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get In Touch</h1>
+      <p class="page-subtitle">We'd love to hear from you</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Visit Our Farm</h2>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div>
+              <h3>Address</h3>
+              <p>123 Garden Path Lane<br>Flower Valley, CA 90210</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <div>
+              <h3>Hours</h3>
+              <p>Monday - Saturday: 8am - 6pm<br>Sunday: 10am - 4pm</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <div>
+              <h3>Phone</h3>
+              <p>(555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-icon">📧</span>
+            <div>
+              <h3>Email</h3>
+              <p>hello@barefootflowerfarms.com</p>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <h3>Follow Our Journey</h3>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <span>📷</span> Instagram
+              </a>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <span>📘</span> Facebook
+              </a>
+              <a href="#" class="social-link" aria-label="Pinterest">
+                <span>📌</span> Pinterest
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h2>Send Us a Message</h2>
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="order">Place an Order</option>
+                <option value="custom">Custom/Wedding Inquiry</option>
+                <option value="visit">Schedule a Farm Visit</option>
+                <option value="wholesale">Wholesale Inquiry</option>
+                <option value="general">General Question</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>Do you deliver?</h3>
+            <p>
+              Yes! We offer local delivery within 15 miles of our farm for orders over $50.
+              Delivery is $10 for orders under $100, and free for orders over $100.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I visit the farm?</h3>
+            <p>
+              We love visitors! Our farm is open during regular business hours. For group
+              tours or special visits, please contact us in advance to schedule.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3>Do you do weddings?</h3>
+            <p>
+              Absolutely! We offer wedding flowers, from simple bouquets to full floral
+              design services. Contact us to schedule a consultation.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3>Are your flowers organic?</h3>
+            <p>
+              We use organic and sustainable practices. While not certified organic, we
+              never use synthetic pesticides or fertilizers on our flowers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-blush) 100%);
+    color: var(--color-charcoal);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    color: var(--color-sage-dark);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .page-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--color-earth);
+  }
+
+  .contact-section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-info h2,
+  .contact-form-wrapper h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .info-item {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .info-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .info-item h3 {
+    font-size: 1.1rem;
+    margin: 0 0 var(--spacing-xs);
+  }
+
+  .info-item p {
+    margin: 0;
+    color: var(--color-earth);
+    line-height: 1.6;
+  }
+
+  .social-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--color-blush);
+  }
+
+  .social-section h3 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-sage);
+    font-weight: 400;
+  }
+
+  .social-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  .contact-form-wrapper {
+    background: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--color-sage-dark);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: var(--spacing-sm);
+    border: 2px solid var(--color-blush);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: var(--color-cream);
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-sage);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .faq-section {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+  }
+
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .faq-item {
+    padding: var(--spacing-sm);
+  }
+
+  .faq-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-terracotta);
+  }
+
+  .faq-item p {
+    color: var(--color-earth);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

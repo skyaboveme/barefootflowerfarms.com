@@ -1,0 +1,393 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Where Nature Blooms <em>Beautifully</em></h1>
+      <p class="hero-subtitle">
+        Welcome to Barefoot Flower Farms, where we grow happiness one petal at a time.
+        Discover fresh-cut flowers, heirloom plants, and the joy of bringing nature home.
+      </p>
+      <div class="hero-buttons">
+        <a href="/products" class="btn btn-primary">Shop Our Blooms</a>
+        <a href="/about" class="btn btn-secondary">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-decoration">
+      <span class="flower-accent">🌷</span>
+      <span class="flower-accent">🌻</span>
+      <span class="flower-accent">🌹</span>
+      <span class="flower-accent">🌸</span>
+      <span class="flower-accent">🌺</span>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3>Locally Grown</h3>
+          <p>All our flowers and plants are grown right here on our farm, ensuring the freshest blooms for your home.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌿</div>
+          <h3>Sustainable Practices</h3>
+          <p>We use organic methods and sustainable farming practices to nurture our plants and protect the earth.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💚</div>
+          <h3>Grown with Love</h3>
+          <p>Each plant receives individual care and attention, from seed to bloom, ensuring exceptional quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seasonal Highlights -->
+  <section class="seasonal">
+    <div class="container">
+      <h2 class="section-title">Seasonal Favorites</h2>
+      <p class="section-subtitle">Discover what's blooming in our gardens right now</p>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-emoji">🌸</span>
+          </div>
+          <h3>Cherry Blossoms</h3>
+          <p>Delicate pink blooms perfect for spring arrangements</p>
+          <span class="price">$24.99 / bunch</span>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-emoji">🌻</span>
+          </div>
+          <h3>Sunflowers</h3>
+          <p>Bright, cheerful blooms that bring sunshine indoors</p>
+          <span class="price">$18.99 / bunch</span>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-emoji">🌹</span>
+          </div>
+          <h3>Garden Roses</h3>
+          <p>Fragrant heirloom roses in stunning varieties</p>
+          <span class="price">$32.99 / dozen</span>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <span class="product-emoji">🪻</span>
+          </div>
+          <h3>Lavender</h3>
+          <p>Aromatic purple blooms for a calming atmosphere</p>
+          <span class="price">$14.99 / bunch</span>
+        </div>
+      </div>
+      <div class="section-cta">
+        <a href="/products" class="btn btn-primary">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonial">
+    <div class="container">
+      <div class="testimonial-content">
+        <blockquote>
+          "Barefoot Flower Farms has transformed my home with their stunning arrangements.
+          The quality and freshness of their flowers is unmatched. I'm a customer for life!"
+        </blockquote>
+        <cite>— Sarah M., Happy Customer</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Join Our Garden Community</h2>
+        <p>Subscribe to receive seasonal updates, gardening tips, and exclusive offers.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-cream) 100%);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a9a6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-sage-dark);
+  }
+
+  .hero h1 em {
+    color: var(--color-terracotta);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-decoration {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    opacity: 0.3;
+  }
+
+  .flower-accent {
+    font-size: 3rem;
+    animation: gentle-float 3s ease-in-out infinite;
+  }
+
+  .flower-accent:nth-child(2) { animation-delay: 0.5s; }
+  .flower-accent:nth-child(3) { animation-delay: 1s; }
+  .flower-accent:nth-child(4) { animation-delay: 1.5s; }
+  .flower-accent:nth-child(5) { animation-delay: 2s; }
+
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Section Styling */
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  /* Features Section */
+  .features {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(125, 148, 113, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .feature-card h3 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .feature-card p {
+    color: var(--color-earth);
+    margin: 0;
+  }
+
+  /* Seasonal/Products Section */
+  .seasonal {
+    background: var(--color-white);
+    padding: var(--spacing-xl) 0;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .product-card {
+    background: var(--color-cream);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-image {
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .product-emoji {
+    font-size: 4rem;
+  }
+
+  .product-card h3 {
+    padding: var(--spacing-sm) var(--spacing-sm) 0;
+    margin: 0;
+  }
+
+  .product-card p {
+    padding: 0 var(--spacing-sm);
+    color: var(--color-earth);
+    font-size: 0.95rem;
+  }
+
+  .price {
+    display: block;
+    padding: var(--spacing-sm);
+    color: var(--color-terracotta);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* Testimonial Section */
+  .testimonial {
+    background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-dark) 100%);
+    padding: var(--spacing-xl) 0;
+    color: var(--color-cream);
+  }
+
+  .testimonial-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  blockquote {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md);
+  }
+
+  cite {
+    font-style: normal;
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+
+  /* Newsletter Section */
+  .newsletter {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-blush);
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .newsletter-content h2 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .newsletter-content p {
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    min-width: 250px;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--color-rose);
+    border-radius: 30px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: var(--color-white);
+  }
+
+  .newsletter-form input:focus {
+    outline: none;
+    border-color: var(--color-sage);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .hero-decoration {
+      display: none;
+    }
+  }
+</style>
