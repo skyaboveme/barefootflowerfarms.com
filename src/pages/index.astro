@@ -113,6 +113,45 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Find Us Section -->
+  <section class="find-us">
+    <div class="container">
+      <h2 class="section-title">Find Us</h2>
+      <p class="section-subtitle">Visit our hidden gem in Rosanky, Texas</p>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8!2d-97.358209!3d29.921331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8643615a1addbd6f%3A0x33b25b91c96c1ab5!2sString%20Prairie%20Gardens%20%26%20Barefoot%20Flower%20Farm!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="String Prairie Gardens & Barefoot Flower Farm location">
+        </iframe>
+      </div>
+      <div class="map-info">
+        <div class="info-card">
+          <span class="info-icon">📍</span>
+          <h3>Location</h3>
+          <p>440 McReynolds Rd<br>Rosanky, TX 78953</p>
+        </div>
+        <div class="info-card">
+          <span class="info-icon">🚗</span>
+          <h3>Directions</h3>
+          <p>Look for our farm stand on St. Mary's Road, then follow the blue arrows on McReynolds Road</p>
+        </div>
+        <div class="info-card">
+          <span class="info-icon">💐</span>
+          <h3>Visit Today</h3>
+          <p>
+            <a href="https://www.google.com/maps/place/String+Prairie+Gardens+%26+Barefoot+Flower+Farm/@29.921331,-97.358209,15z" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Newsletter Section -->
   <section class="newsletter">
     <div class="container">
@@ -371,6 +410,53 @@ import Layout from '../layouts/Layout.astro';
     font-style: normal;
     opacity: 0.9;
     font-size: 1rem;
+  }
+
+  /* Find Us Section */
+  .find-us {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-white);
+  }
+
+  .map-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .map-container iframe {
+    display: block;
+  }
+
+  .map-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .info-card {
+    background: var(--color-cream);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .info-card .info-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .info-card h3 {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.2rem;
+  }
+
+  .info-card p {
+    color: var(--color-earth);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* Newsletter Section */
