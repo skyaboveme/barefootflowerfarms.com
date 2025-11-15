@@ -103,12 +103,19 @@ import Layout from '../layouts/Layout.astro';
   <!-- Testimonial Section -->
   <section class="testimonial">
     <div class="container">
-      <div class="testimonial-content">
-        <blockquote>
-          "Barefoot Flower Farms has transformed my home with their stunning arrangements.
-          The quality and freshness of their flowers is unmatched. I'm a customer for life!"
-        </blockquote>
-        <cite>— Sarah M., Happy Customer</cite>
+      <div class="testimonials-grid">
+        <div class="testimonial-content">
+          <blockquote>
+            "Visiting Anna's farmstand at the corner of St. Mary's Rd. and McReynolds Rd. in String Prairie is an amazing delight! Then, if you want to treat yourself to the ultimate enriching experience, I highly recommend taking the four minute drive down McReynolds Rd. to visit String Prairie Gardens and Barefoot Flower Farm! Give yourself plenty of time to explore and be inspired. Anna is a wealth of gardening knowledge."
+          </blockquote>
+          <cite>— Happy Visitor</cite>
+        </div>
+        <div class="testimonial-content">
+          <blockquote>
+            "Professional, thoughtful, detail oriented… you won't find a kinder, more caring florist than this!"
+          </blockquote>
+          <cite>— Jill Schaben</cite>
+        </div>
       </div>
     </div>
   </section>
@@ -125,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
           <p class="location-address">St. Mary's Road, Rosanky</p>
           <div class="map-container small">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8!2d-97.3456641!3d29.9070877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8643615a1addbd6f%3A0x33b25b91c96c1ab5!2sString%20Prairie%20Gardens%20%26%20Barefoot%20Flower%20Farm!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d-97.34548207785876!3d29.907144706782812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDU0JzI1LjciTiA5N8KwMjAnNDMuNyJX!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
               width="100%"
               height="300"
               style="border:0;"
@@ -405,15 +412,24 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-cream);
   }
 
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
   .testimonial-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md);
+    border-radius: 12px;
   }
 
   blockquote {
     font-family: var(--font-serif);
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-style: italic;
     line-height: 1.6;
     margin: 0 0 var(--spacing-md);
@@ -423,6 +439,12 @@ import Layout from '../layouts/Layout.astro';
     font-style: normal;
     opacity: 0.9;
     font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Find Us Section */
