@@ -3,66 +3,66 @@ import Layout from '../layouts/Layout.astro';
 
 const products = [
   {
-    name: "Garden Roses",
-    emoji: "🌹",
-    description: "Fragrant heirloom roses in stunning varieties including blush, cream, and deep red.",
-    price: "$32.99",
-    unit: "dozen",
+    name: "Mixed Zinnias",
+    image: "/Images/pink-zinnias-bouquet-field.jpeg",
+    description: "Bold, vibrant blooms in pinks, reds, and oranges. Perfect for summer arrangements.",
+    price: "$16.99",
+    unit: "bunch",
     category: "Cut Flowers"
   },
   {
-    name: "Sunflowers",
-    emoji: "🌻",
-    description: "Bright, cheerful blooms that bring instant sunshine to any space.",
+    name: "Snapdragons",
+    image: "/Images/snapdragons-garden-rows.jpeg",
+    description: "Tall, elegant spikes in beautiful sunset colors.",
     price: "$18.99",
     unit: "bunch",
     category: "Cut Flowers"
   },
   {
-    name: "Lavender",
-    emoji: "🪻",
-    description: "Aromatic purple blooms perfect for arrangements or drying.",
-    price: "$14.99",
-    unit: "bunch",
+    name: "Mixed Bouquet",
+    image: "/Images/colorful-mixed-bouquet-vase.jpeg",
+    description: "A stunning arrangement of seasonal blooms, professionally designed.",
+    price: "$45.99",
+    unit: "arrangement",
     category: "Cut Flowers"
   },
   {
-    name: "Dahlia Mix",
-    emoji: "🌸",
-    description: "Show-stopping dinner plate dahlias in vibrant colors.",
+    name: "Spring Mix",
+    image: "/Images/spring-bouquet-snapdragons-larkspur.jpeg",
+    description: "Delicate spring flowers including larkspur and cosmos.",
     price: "$28.99",
     unit: "bunch",
     category: "Cut Flowers"
   },
   {
-    name: "Sweet Peas",
-    emoji: "🌺",
-    description: "Delicate, fragrant blooms in pastel shades.",
+    name: "Cosmos Bouquet",
+    image: "/Images/pink-wrapped-cosmos-bouquet.jpeg",
+    description: "Soft, romantic cosmos in pink wrapping, perfect for gifts.",
     price: "$22.99",
     unit: "bunch",
     category: "Cut Flowers"
   },
   {
-    name: "Ranunculus",
-    emoji: "🏵️",
-    description: "Layers of delicate petals in romantic colors.",
-    price: "$26.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Tulips",
-    emoji: "🌷",
-    description: "Classic spring favorites in an array of colors.",
-    price: "$19.99",
+    name: "Clematis",
+    image: "/Images/pink-clematis-vine-blooms.jpeg",
+    description: "Stunning pink vine flowers for elegant arrangements.",
+    price: "$32.99",
     unit: "dozen",
     category: "Cut Flowers"
   },
   {
-    name: "Zinnias",
-    emoji: "💐",
-    description: "Bold, vibrant blooms perfect for summer arrangements.",
-    price: "$16.99",
+    name: "Nasturtiums & Orchids",
+    image: "/Images/nasturtium-orchid-colorful-bouquet.jpeg",
+    description: "Bright, edible nasturtiums mixed with tropical orchids.",
+    price: "$24.99",
+    unit: "bunch",
+    category: "Cut Flowers"
+  },
+  {
+    name: "White Dahlias",
+    image: "/Images/white-dahlia-arrangement-mason-jar.jpeg",
+    description: "Classic white blooms with delicate greenery.",
+    price: "$28.99",
     unit: "bunch",
     category: "Cut Flowers"
   },
@@ -128,7 +128,11 @@ const categories = [...new Set(products.map(p => p.category))];
             {products.filter(p => p.category === category).map(product => (
               <div class="product-card">
                 <div class="product-image">
-                  <span class="product-emoji">{product.emoji}</span>
+                  {product.image ? (
+                    <img src={product.image} alt={product.name} />
+                  ) : (
+                    <span class="product-emoji">{product.emoji}</span>
+                  )}
                 </div>
                 <div class="product-info">
                   <h3>{product.name}</h3>
@@ -245,8 +249,22 @@ const categories = [...new Set(products.map(p => p.category))];
 
   .product-image {
     background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
-    padding: var(--spacing-lg);
-    text-align: center;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.1);
   }
 
   .product-emoji {

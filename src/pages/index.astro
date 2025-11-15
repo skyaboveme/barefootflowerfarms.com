@@ -5,10 +5,13 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-background">
+      <img src="/Images/farm-stand-wide-view.jpeg" alt="String Prairie Gardens & Barefoot Flower Farm stand" />
+    </div>
     <div class="hero-content">
       <h1>Where Nature Blooms <em>Beautifully</em></h1>
       <p class="hero-subtitle">
-        Welcome to Barefoot Flower Farms, where we grow happiness one petal at a time.
+        Welcome to String Prairie Gardens & Barefoot Flower Farm, where we grow happiness one petal at a time.
         Discover fresh-cut flowers, heirloom plants, and the joy of bringing nature home.
       </p>
       <div class="hero-buttons">
@@ -16,12 +19,15 @@ import Layout from '../layouts/Layout.astro';
         <a href="/about" class="btn btn-secondary">Our Story</a>
       </div>
     </div>
-    <div class="hero-decoration">
-      <span class="flower-accent">🌷</span>
-      <span class="flower-accent">🌻</span>
-      <span class="flower-accent">🌹</span>
-      <span class="flower-accent">🌸</span>
-      <span class="flower-accent">🌺</span>
+  </section>
+
+  <!-- Gallery Preview -->
+  <section class="gallery-preview">
+    <div class="gallery-grid">
+      <img src="/Images/colorful-mixed-bouquet-vase.jpeg" alt="Colorful mixed flower bouquet" />
+      <img src="/Images/pink-zinnias-bouquet-field.jpeg" alt="Pink zinnias in the field" />
+      <img src="/Images/butterfly.jpeg" alt="Butterfly on zinnias" />
+      <img src="/Images/spring-bouquet-snapdragons-larkspur.jpeg" alt="Spring bouquet with snapdragons" />
     </div>
   </section>
 
@@ -57,35 +63,35 @@ import Layout from '../layouts/Layout.astro';
       <div class="product-grid">
         <div class="product-card">
           <div class="product-image">
-            <span class="product-emoji">🌸</span>
+            <img src="/Images/zinnia-arrangement-ceramic-vase.jpeg" alt="Zinnia arrangement" />
           </div>
-          <h3>Cherry Blossoms</h3>
-          <p>Delicate pink blooms perfect for spring arrangements</p>
+          <h3>Mixed Zinnias</h3>
+          <p>Vibrant, colorful zinnias perfect for any occasion</p>
           <span class="price">$24.99 / bunch</span>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <span class="product-emoji">🌻</span>
+            <img src="/Images/snapdragons-garden-rows.jpeg" alt="Snapdragons" />
           </div>
-          <h3>Sunflowers</h3>
-          <p>Bright, cheerful blooms that bring sunshine indoors</p>
+          <h3>Snapdragons</h3>
+          <p>Tall, elegant blooms in sunset colors</p>
           <span class="price">$18.99 / bunch</span>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <span class="product-emoji">🌹</span>
+            <img src="/Images/pink-clematis-vine-blooms.jpeg" alt="Clematis" />
           </div>
-          <h3>Garden Roses</h3>
-          <p>Fragrant heirloom roses in stunning varieties</p>
+          <h3>Clematis</h3>
+          <p>Stunning pink vine flowers for elegant arrangements</p>
           <span class="price">$32.99 / dozen</span>
         </div>
         <div class="product-card">
           <div class="product-image">
-            <span class="product-emoji">🪻</span>
+            <img src="/Images/white-dahlia-arrangement-mason-jar.jpeg" alt="White dahlias" />
           </div>
-          <h3>Lavender</h3>
-          <p>Aromatic purple blooms for a calming atmosphere</p>
-          <span class="price">$14.99 / bunch</span>
+          <h3>White Dahlias</h3>
+          <p>Classic white blooms with delicate greenery</p>
+          <span class="price">$28.99 / bunch</span>
         </div>
       </div>
       <div class="section-cta">
@@ -125,22 +131,38 @@ import Layout from '../layouts/Layout.astro';
 <style>
   /* Hero Section */
   .hero {
-    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-cream) 100%);
-    padding: var(--spacing-xl) var(--spacing-md);
-    text-align: center;
     position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     overflow: hidden;
   }
 
-  .hero::before {
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  .hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-background::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a9a6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+    background: linear-gradient(135deg, rgba(232, 213, 208, 0.85) 0%, rgba(250, 248, 245, 0.9) 100%);
   }
 
   .hero-content {
@@ -148,6 +170,7 @@ import Layout from '../layouts/Layout.astro';
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
   }
 
   .hero h1 {
@@ -174,30 +197,37 @@ import Layout from '../layouts/Layout.astro';
     flex-wrap: wrap;
   }
 
-  .hero-decoration {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-lg);
-    opacity: 0.3;
+  /* Gallery Preview */
+  .gallery-preview {
+    padding: 0;
+    overflow: hidden;
   }
 
-  .flower-accent {
-    font-size: 3rem;
-    animation: gentle-float 3s ease-in-out infinite;
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
   }
 
-  .flower-accent:nth-child(2) { animation-delay: 0.5s; }
-  .flower-accent:nth-child(3) { animation-delay: 1s; }
-  .flower-accent:nth-child(4) { animation-delay: 1.5s; }
-  .flower-accent:nth-child(5) { animation-delay: 2s; }
+  .gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
 
-  @keyframes gentle-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .gallery-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid img {
+      height: 200px;
+    }
   }
 
   /* Section Styling */
@@ -282,13 +312,19 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .product-image {
-    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
-    padding: var(--spacing-lg);
-    text-align: center;
+    overflow: hidden;
+    height: 200px;
   }
 
-  .product-emoji {
-    font-size: 4rem;
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.1);
   }
 
   .product-card h3 {
@@ -383,11 +419,11 @@ import Layout from '../layouts/Layout.astro';
 
   @media (max-width: 768px) {
     .hero {
-      padding: var(--spacing-lg) var(--spacing-sm);
+      min-height: 50vh;
     }
 
-    .hero-decoration {
-      display: none;
+    .hero-content {
+      padding: var(--spacing-lg) var(--spacing-sm);
     }
   }
 </style>

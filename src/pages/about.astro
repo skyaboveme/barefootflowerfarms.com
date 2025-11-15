@@ -2,8 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="About Us - Barefoot Flower Farms" description="Learn about our story, our passion for growing beautiful flowers, and our commitment to sustainable farming practices.">
+<Layout title="About Us - String Prairie Gardens & Barefoot Flower Farm" description="Learn about our story, our passion for growing beautiful flowers, and our commitment to sustainable farming practices.">
   <section class="page-hero">
+    <div class="hero-bg">
+      <img src="/Images/farm-grounds-garden-arches.jpeg" alt="Farm grounds with garden arches" />
+    </div>
     <div class="container">
       <h1>Our Story</h1>
       <p class="page-subtitle">Rooted in passion, blooming with purpose</p>
@@ -16,8 +19,8 @@ import Layout from '../layouts/Layout.astro';
         <div class="story-text">
           <h2>How It All Began</h2>
           <p>
-            Barefoot Flower Farms started with a simple dream: to grow the most beautiful,
-            fragrant flowers while walking barefoot through rich, healthy soil. In 2015,
+            String Prairie Gardens & Barefoot Flower Farm started with a simple dream: to grow the most beautiful,
+            fragrant flowers while walking barefoot through rich, healthy soil. Located in Rosanky, Texas,
             we planted our first seeds on a small plot of land, never imagining how those
             tiny beginnings would blossom into something truly magical.
           </p>
@@ -29,11 +32,7 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
         <div class="story-image">
-          <div class="image-placeholder">
-            <span>🌾</span>
-            <span>🌻</span>
-            <span>🌷</span>
-          </div>
+          <img src="/Images/farm-entrance-sign.jpeg" alt="String Prairie Gardens & Barefoot Flower Farm entrance sign" />
         </div>
       </div>
 
@@ -109,10 +108,44 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .page-hero {
-    background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-dark) 100%);
+    position: relative;
     color: var(--color-cream);
     padding: var(--spacing-xl) var(--spacing-md);
     text-align: center;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(125, 148, 113, 0.85) 0%, rgba(90, 107, 82, 0.9) 100%);
+  }
+
+  .page-hero .container {
+    position: relative;
+    z-index: 1;
   }
 
   .page-hero h1 {
@@ -154,13 +187,11 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
   }
 
-  .image-placeholder {
-    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+  .story-image img {
+    width: 100%;
+    height: auto;
     border-radius: 20px;
-    padding: var(--spacing-xl);
-    display: flex;
-    gap: var(--spacing-md);
-    font-size: 4rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   }
 
   .values-section {
