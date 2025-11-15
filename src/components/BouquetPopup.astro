@@ -1,0 +1,508 @@
+---
+const bouquets = [
+  {
+    id: 1,
+    name: "Classic Romance",
+    image: "/Images/zinnia-arrangement-ceramic-vase.jpeg",
+    description: "A beautiful mix of colorful zinnias, perfect for showing your love",
+    price: "$35"
+  },
+  {
+    id: 2,
+    name: "Garden Delight",
+    image: "/Images/colorful-mixed-bouquet-vase.jpeg",
+    description: "Stunning mixed arrangement with seasonal favorites",
+    price: "$55"
+  },
+  {
+    id: 3,
+    name: "Spring Elegance",
+    image: "/Images/spring-bouquet-snapdragons-larkspur.jpeg",
+    description: "Delicate spring blooms in soft, romantic colors",
+    price: "$45"
+  },
+  {
+    id: 4,
+    name: "Pure & Simple",
+    image: "/Images/white-dahlia-arrangement-mason-jar.jpeg",
+    description: "Classic white dahlias for timeless elegance",
+    price: "$40"
+  },
+  {
+    id: 5,
+    name: "Sunset Surprise",
+    image: "/Images/bells-of-ireland-orange-flowers-pitcher.jpeg",
+    description: "Warm orange tones with unique greenery",
+    price: "$48"
+  },
+  {
+    id: 6,
+    name: "Gift Wrapped Love",
+    image: "/Images/pink-wrapped-cosmos-bouquet.jpeg",
+    description: "Ready-to-gift bouquet in beautiful pink wrapping",
+    price: "$38"
+  }
+];
+---
+
+<div id="bouquet-popup" class="popup-overlay">
+  <div class="popup-content">
+    <button class="popup-close" aria-label="Close popup">&times;</button>
+
+    <div class="popup-header">
+      <h2>Pick Up Flowers for Your Loved One</h2>
+      <p>Select a beautiful bouquet and we'll have it ready for pickup</p>
+    </div>
+
+    <div class="bouquet-grid">
+      {bouquets.map(bouquet => (
+        <div class="bouquet-option" data-bouquet-id={bouquet.id}>
+          <div class="bouquet-image">
+            <img src={bouquet.image} alt={bouquet.name} />
+          </div>
+          <div class="bouquet-details">
+            <h3>{bouquet.name}</h3>
+            <p>{bouquet.description}</p>
+            <span class="bouquet-price">{bouquet.price}</span>
+          </div>
+          <button class="select-bouquet-btn btn btn-primary">Select</button>
+        </div>
+      ))}
+    </div>
+
+    <div id="selection-form" class="selection-form hidden">
+      <h3>Complete Your Order</h3>
+      <p class="selected-bouquet-name"></p>
+
+      <form id="pickup-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pickup-name">Your Name</label>
+            <input type="text" id="pickup-name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="pickup-phone">Phone Number</label>
+            <input type="tel" id="pickup-phone" name="phone" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pickup-date">Pickup Date</label>
+            <input type="date" id="pickup-date" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="pickup-time">Preferred Time</label>
+            <select id="pickup-time" name="time" required>
+              <option value="">Select time</option>
+              <option value="9:00 AM">9:00 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
+              <option value="5:00 PM">5:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pickup-message">Add a Message (optional)</label>
+          <textarea id="pickup-message" name="message" rows="3" placeholder="Write a special message for your loved one..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary back-to-selection">Back</button>
+          <button type="submit" class="btn btn-primary">Request Pickup</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="success-message" class="success-message hidden">
+      <div class="success-icon">💐</div>
+      <h3>Thank You!</h3>
+      <p>We've received your bouquet request. We'll contact you shortly to confirm your pickup.</p>
+      <button class="btn btn-primary close-success">Close</button>
+    </div>
+  </div>
+</div>
+
+<button id="open-popup-btn" class="floating-cta">
+  <span class="cta-icon">💐</span>
+  <span class="cta-text">Quick Pickup</span>
+</button>
+
+<style>
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+  }
+
+  .popup-overlay.active {
+    display: flex;
+  }
+
+  .popup-content {
+    background: var(--color-cream);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: var(--spacing-lg);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-earth);
+    transition: color 0.3s ease;
+  }
+
+  .popup-close:hover {
+    color: var(--color-terracotta);
+  }
+
+  .popup-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .popup-header h2 {
+    color: var(--color-sage-dark);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .popup-header p {
+    color: var(--color-earth);
+  }
+
+  .bouquet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .bouquet-option {
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .bouquet-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(125, 148, 113, 0.2);
+  }
+
+  .bouquet-image {
+    height: 150px;
+    overflow: hidden;
+  }
+
+  .bouquet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .bouquet-option:hover .bouquet-image img {
+    transform: scale(1.1);
+  }
+
+  .bouquet-details {
+    padding: var(--spacing-sm);
+  }
+
+  .bouquet-details h3 {
+    font-size: 1.1rem;
+    margin: 0 0 var(--spacing-xs);
+    color: var(--color-sage-dark);
+  }
+
+  .bouquet-details p {
+    font-size: 0.9rem;
+    color: var(--color-earth);
+    margin: 0 0 var(--spacing-xs);
+    line-height: 1.4;
+  }
+
+  .bouquet-price {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-terracotta);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .select-bouquet-btn {
+    width: calc(100% - var(--spacing-md));
+    margin: 0 var(--spacing-xs) var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+  }
+
+  .selection-form {
+    padding: var(--spacing-md) 0;
+  }
+
+  .selection-form h3 {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .selected-bouquet-name {
+    text-align: center;
+    color: var(--color-terracotta);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-sage-dark);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-xs);
+    border: 2px solid var(--color-blush);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: var(--color-white);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-sage);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .success-message {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .success-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .success-message h3 {
+    color: var(--color-sage-dark);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .success-message p {
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .floating-cta {
+    position: fixed;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--color-terracotta);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(196, 132, 108, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .floating-cta:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(196, 132, 108, 0.5);
+  }
+
+  .cta-icon {
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 768px) {
+    .popup-content {
+      padding: var(--spacing-md);
+    }
+
+    .bouquet-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .floating-cta {
+      bottom: var(--spacing-sm);
+      right: var(--spacing-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('bouquet-popup');
+    const openBtn = document.getElementById('open-popup-btn');
+    const closeBtn = document.querySelector('.popup-close');
+    const bouquetGrid = document.querySelector('.bouquet-grid');
+    const selectionForm = document.getElementById('selection-form');
+    const successMessage = document.getElementById('success-message');
+    const selectedBouquetName = document.querySelector('.selected-bouquet-name');
+    const backBtn = document.querySelector('.back-to-selection');
+    const closeSuccessBtn = document.querySelector('.close-success');
+    const pickupForm = document.getElementById('pickup-form');
+
+    let selectedBouquet = null;
+
+    // Open popup
+    openBtn?.addEventListener('click', () => {
+      popup?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close popup
+    const closePopup = () => {
+      popup?.classList.remove('active');
+      document.body.style.overflow = '';
+      resetPopup();
+    };
+
+    closeBtn?.addEventListener('click', closePopup);
+    closeSuccessBtn?.addEventListener('click', closePopup);
+
+    // Close on overlay click
+    popup?.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup?.classList.contains('active')) {
+        closePopup();
+      }
+    });
+
+    // Select bouquet
+    document.querySelectorAll('.select-bouquet-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const bouquetOption = e.target.closest('.bouquet-option');
+        const bouquetName = bouquetOption?.querySelector('h3')?.textContent;
+        const bouquetPrice = bouquetOption?.querySelector('.bouquet-price')?.textContent;
+
+        selectedBouquet = {
+          name: bouquetName,
+          price: bouquetPrice
+        };
+
+        selectedBouquetName.textContent = `Selected: ${bouquetName} - ${bouquetPrice}`;
+        bouquetGrid?.classList.add('hidden');
+        selectionForm?.classList.remove('hidden');
+      });
+    });
+
+    // Back to selection
+    backBtn?.addEventListener('click', () => {
+      selectionForm?.classList.add('hidden');
+      bouquetGrid?.classList.remove('hidden');
+      selectedBouquet = null;
+    });
+
+    // Form submission
+    pickupForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // In a real app, you'd send this data to a server
+      selectionForm?.classList.add('hidden');
+      successMessage?.classList.remove('hidden');
+    });
+
+    // Reset popup state
+    const resetPopup = () => {
+      setTimeout(() => {
+        bouquetGrid?.classList.remove('hidden');
+        selectionForm?.classList.add('hidden');
+        successMessage?.classList.add('hidden');
+        pickupForm?.reset();
+        selectedBouquet = null;
+      }, 300);
+    };
+
+    // Set minimum date to today
+    const dateInput = document.getElementById('pickup-date') as HTMLInputElement;
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+    }
+  });
+</script>
