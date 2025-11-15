@@ -117,37 +117,50 @@ import Layout from '../layouts/Layout.astro';
   <section class="find-us">
     <div class="container">
       <h2 class="section-title">Find Us</h2>
-      <p class="section-subtitle">Visit our hidden gem in Rosanky, Texas</p>
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8!2d-97.358209!3d29.921331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8643615a1addbd6f%3A0x33b25b91c96c1ab5!2sString%20Prairie%20Gardens%20%26%20Barefoot%20Flower%20Farm!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
-          width="100%"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="String Prairie Gardens & Barefoot Flower Farm location">
-        </iframe>
+      <p class="section-subtitle">Two locations to discover in Rosanky, Texas</p>
+
+      <div class="locations-grid">
+        <div class="location-box">
+          <h3>🌸 Flower Market Stand</h3>
+          <p class="location-address">St. Mary's Road, Rosanky</p>
+          <div class="map-container small">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8!2d-97.3456641!3d29.9070877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8643615a1addbd6f%3A0x33b25b91c96c1ab5!2sString%20Prairie%20Gardens%20%26%20Barefoot%20Flower%20Farm!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+              width="100%"
+              height="300"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Flower Market Stand on St. Mary's Road">
+            </iframe>
+          </div>
+          <p class="location-desc">Our charming roadside stand packed with fresh flowers and plants. Your first stop!</p>
+        </div>
+
+        <div class="location-box">
+          <h3>🌿 Main Nursery & Venue</h3>
+          <p class="location-address">440 McReynolds Rd, Rosanky</p>
+          <div class="map-container small">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.8!2d-97.358209!3d29.921331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8643615a1addbd6f%3A0x33b25b91c96c1ab5!2sString%20Prairie%20Gardens%20%26%20Barefoot%20Flower%20Farm!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+              width="100%"
+              height="300"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Main Nursery and Event Venue">
+            </iframe>
+          </div>
+          <p class="location-desc">Follow the blue arrows to our greenhouse, nursery, and gorgeous event venue with valley views.</p>
+        </div>
       </div>
-      <div class="map-info">
-        <div class="info-card">
-          <span class="info-icon">📍</span>
-          <h3>Location</h3>
-          <p>440 McReynolds Rd<br>Rosanky, TX 78953</p>
-        </div>
-        <div class="info-card">
-          <span class="info-icon">🚗</span>
-          <h3>Directions</h3>
-          <p>Look for our farm stand on St. Mary's Road, then follow the blue arrows on McReynolds Road</p>
-        </div>
-        <div class="info-card">
-          <span class="info-icon">💐</span>
-          <h3>Visit Today</h3>
-          <p>
-            <a href="https://www.google.com/maps/place/String+Prairie+Gardens+%26+Barefoot+Flower+Farm/@29.921331,-97.358209,15z" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
-          </p>
-        </div>
+
+      <div class="directions-box">
+        <span class="directions-icon">🔵</span>
+        <p><strong>How to find us:</strong> Start at our farm stand on St. Mary's Road, then turn onto McReynolds Road and follow the little blue arrows painted on the road for about 5 minutes to reach our main property.</p>
+        <a href="https://www.google.com/maps/place/String+Prairie+Gardens+%26+Barefoot+Flower+Farm/@29.921331,-97.358209,15z" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
       </div>
     </div>
   </section>
@@ -457,6 +470,74 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-earth);
     line-height: 1.6;
     margin: 0;
+  }
+
+  /* Dual Location Maps */
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .location-box {
+    background: var(--color-cream);
+    border-radius: 16px;
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .location-box h3 {
+    margin: 0 0 var(--spacing-xs);
+    font-size: 1.4rem;
+    color: var(--color-sage-dark);
+  }
+
+  .location-address {
+    color: var(--color-terracotta);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm);
+    font-size: 1rem;
+  }
+
+  .location-box .map-container.small {
+    margin-bottom: var(--spacing-sm);
+    border-radius: 12px;
+  }
+
+  .location-desc {
+    color: var(--color-earth);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .directions-box {
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .directions-box .directions-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .directions-box p {
+    color: var(--color-earth);
+    line-height: 1.7;
+    margin: 0 0 var(--spacing-sm);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Newsletter Section */
