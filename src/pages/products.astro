@@ -1,104 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const products = [
-  {
-    name: "Mixed Zinnias",
-    image: "/Images/pink-zinnias-bouquet-field.jpeg",
-    description: "Bold, vibrant blooms in pinks, reds, and oranges. Perfect for summer arrangements.",
-    price: "$16.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Snapdragons",
-    image: "/Images/snapdragons-garden-rows.jpeg",
-    description: "Tall, elegant spikes in beautiful sunset colors.",
-    price: "$18.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Mixed Bouquet",
-    image: "/Images/colorful-mixed-bouquet-vase.jpeg",
-    description: "A stunning arrangement of seasonal blooms, professionally designed.",
-    price: "$45.99",
-    unit: "arrangement",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Spring Mix",
-    image: "/Images/spring-bouquet-snapdragons-larkspur.jpeg",
-    description: "Delicate spring flowers including larkspur and cosmos.",
-    price: "$28.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Cosmos Bouquet",
-    image: "/Images/pink-wrapped-cosmos-bouquet.jpeg",
-    description: "Soft, romantic cosmos in pink wrapping, perfect for gifts.",
-    price: "$22.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Clematis",
-    image: "/Images/pink-clematis-vine-blooms.jpeg",
-    description: "Stunning pink vine flowers for elegant arrangements.",
-    price: "$32.99",
-    unit: "dozen",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Nasturtiums & Orchids",
-    image: "/Images/nasturtium-orchid-colorful-bouquet.jpeg",
-    description: "Bright, edible nasturtiums mixed with tropical orchids.",
-    price: "$24.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "White Dahlias",
-    image: "/Images/white-dahlia-arrangement-mason-jar.jpeg",
-    description: "Classic white blooms with delicate greenery.",
-    price: "$28.99",
-    unit: "bunch",
-    category: "Cut Flowers"
-  },
-  {
-    name: "Herb Seedlings",
-    emoji: "🌿",
-    description: "Basil, rosemary, thyme, and more. Ready to plant.",
-    price: "$4.99",
-    unit: "pot",
-    category: "Plants"
-  },
-  {
-    name: "Tomato Starts",
-    emoji: "🍅",
-    description: "Heirloom varieties ready for your garden.",
-    price: "$5.99",
-    unit: "pot",
-    category: "Plants"
-  },
-  {
-    name: "Pollinator Garden Mix",
-    emoji: "🐝",
-    description: "Seeds for a garden that attracts bees and butterflies.",
-    price: "$12.99",
-    unit: "packet",
-    category: "Seeds"
-  },
-  {
-    name: "Wildflower Seeds",
-    emoji: "🌼",
-    description: "Native wildflower mix for natural meadow gardens.",
-    price: "$9.99",
-    unit: "packet",
-    category: "Seeds"
-  }
-];
+// Read products from JSON file at build time
+const jsonPath = path.join(process.cwd(), 'public/data/products.json');
+const data = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+const products = data.products;
 
 const categories = [...new Set(products.map(p => p.category))];
 ---
@@ -138,7 +46,7 @@ const categories = [...new Set(products.map(p => p.category))];
                   <h3>{product.name}</h3>
                   <p class="product-description">{product.description}</p>
                   <div class="product-footer">
-                    <span class="price">{product.price} / {product.unit}</span>
+                    <span class="price">${product.price} / {product.unit}</span>
                   </div>
                 </div>
               </div>
