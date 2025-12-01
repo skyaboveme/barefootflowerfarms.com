@@ -1,5 +1,23 @@
 ---
-const bouquets = [
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Read products from JSON file at build time
+const jsonPath = path.join(process.cwd(), 'public/data/products.json');
+const data = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+
+// Filter for Quick Pickup products only
+const quickPickupProducts = data.products.filter((p: any) => p.quickPickup === true);
+
+// If no quick pickup products, use default bouquets
+const bouquets = quickPickupProducts.length > 0 ? quickPickupProducts.map((p: any) => ({
+  id: p.id,
+  name: p.name,
+  image: p.image || '',
+  emoji: p.emoji || '🌸',
+  description: p.description,
+  price: `$${p.price}`
+})) : [
   {
     id: 1,
     name: "Classic Romance",
@@ -20,27 +38,6 @@ const bouquets = [
     image: "/Images/spring-bouquet-snapdragons-larkspur.jpeg",
     description: "Delicate spring blooms in soft, romantic colors",
     price: "$45"
-  },
-  {
-    id: 4,
-    name: "Pure & Simple",
-    image: "/Images/white-dahlia-arrangement-mason-jar.jpeg",
-    description: "Classic white dahlias for timeless elegance",
-    price: "$40"
-  },
-  {
-    id: 5,
-    name: "Sunset Surprise",
-    image: "/Images/bells-of-ireland-orange-flowers-pitcher.jpeg",
-    description: "Warm orange tones with unique greenery",
-    price: "$48"
-  },
-  {
-    id: 6,
-    name: "Gift Wrapped Love",
-    image: "/Images/pink-wrapped-cosmos-bouquet.jpeg",
-    description: "Ready-to-gift bouquet in beautiful pink wrapping",
-    price: "$38"
   }
 ];
 ---
@@ -50,15 +47,19 @@ const bouquets = [
     <button class="popup-close" aria-label="Close popup">&times;</button>
 
     <div class="popup-header">
-      <h2>Pick Up Flowers for Your Loved One</h2>
-      <p>Select a beautiful bouquet and we'll have it ready for pickup</p>
+      <h2>Quick Pickup at the Farm Stand</h2>
+      <p>Select from our ready-to-go bouquets and arrangements</p>
     </div>
 
     <div class="bouquet-grid">
       {bouquets.map(bouquet => (
         <div class="bouquet-option" data-bouquet-id={bouquet.id}>
           <div class="bouquet-image">
-            <img src={bouquet.image} alt={bouquet.name} />
+            {bouquet.image ? (
+              <img src={bouquet.image} alt={bouquet.name} />
+            ) : (
+              <span class="bouquet-emoji">{bouquet.emoji}</span>
+            )}
           </div>
           <div class="bouquet-details">
             <h3>{bouquet.name}</h3>
@@ -69,6 +70,12 @@ const bouquets = [
         </div>
       ))}
     </div>
+
+    {bouquets.length === 0 && (
+      <div class="no-products">
+        <p>No quick pickup products available right now. Check back soon!</p>
+      </div>
+    )}
 
     <div id="selection-form" class="selection-form hidden">
       <h3>Complete Your Order</h3>
@@ -123,7 +130,7 @@ const bouquets = [
     <div id="success-message" class="success-message hidden">
       <div class="success-icon">💐</div>
       <h3>Thank You!</h3>
-      <p>We've received your bouquet request. We'll contact you shortly to confirm your pickup.</p>
+      <p>We've received your bouquet request. We'll contact you shortly to confirm your pickup at the farm stand.</p>
       <button class="btn btn-primary close-success">Close</button>
     </div>
   </div>
@@ -228,6 +235,10 @@ const bouquets = [
   .bouquet-image {
     height: 150px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
   }
 
   .bouquet-image img {
@@ -239,6 +250,10 @@ const bouquets = [
 
   .bouquet-option:hover .bouquet-image img {
     transform: scale(1.1);
+  }
+
+  .bouquet-emoji {
+    font-size: 4rem;
   }
 
   .bouquet-details {
@@ -271,6 +286,12 @@ const bouquets = [
     margin: 0 var(--spacing-xs) var(--spacing-sm);
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.9rem;
+  }
+
+  .no-products {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--color-earth);
   }
 
   .selection-form {
@@ -456,7 +477,7 @@ const bouquets = [
     // Select bouquet
     document.querySelectorAll('.select-bouquet-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const bouquetOption = e.target.closest('.bouquet-option');
+        const bouquetOption = (e.target as HTMLElement).closest('.bouquet-option');
         const bouquetName = bouquetOption?.querySelector('h3')?.textContent;
         const bouquetPrice = bouquetOption?.querySelector('.bouquet-price')?.textContent;
 
@@ -465,7 +486,9 @@ const bouquets = [
           price: bouquetPrice
         };
 
-        selectedBouquetName.textContent = `Selected: ${bouquetName} - ${bouquetPrice}`;
+        if (selectedBouquetName) {
+          selectedBouquetName.textContent = `Selected: ${bouquetName} - ${bouquetPrice}`;
+        }
         bouquetGrid?.classList.add('hidden');
         selectionForm?.classList.remove('hidden');
       });
@@ -493,7 +516,7 @@ const bouquets = [
         bouquetGrid?.classList.remove('hidden');
         selectionForm?.classList.add('hidden');
         successMessage?.classList.add('hidden');
-        pickupForm?.reset();
+        (pickupForm as HTMLFormElement)?.reset();
         selectedBouquet = null;
       }, 300);
     };

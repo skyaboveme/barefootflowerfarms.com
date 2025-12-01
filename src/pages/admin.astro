@@ -119,6 +119,18 @@ import Layout from '../layouts/Layout.astro';
             <input type="text" id="product-emoji" placeholder="🌸" maxlength="4" />
           </div>
 
+          <!-- Quick Pickup Option -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="product-quick-pickup" />
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">
+                <strong>Quick Pickup</strong>
+                <small>Available at the Farm Stand for quick pickup</small>
+              </span>
+            </label>
+          </div>
+
           <div class="form-actions">
             <button type="button" id="cancel-btn" class="btn btn-outline">Cancel</button>
             <button type="submit" class="btn btn-primary">Save Product</button>
@@ -235,7 +247,11 @@ import Layout from '../layouts/Layout.astro';
               ? `<img src="${product.imageData}" alt="${product.name}" />`
               : `<span class="emoji">${product.emoji || '🌸'}</span>`}
         </td>
-        <td><strong>${product.name}</strong><br><small>${product.description?.substring(0, 50)}...</small></td>
+        <td>
+          <strong>${product.name}</strong>
+          ${product.quickPickup ? '<span class="quick-pickup-badge">Quick Pickup</span>' : ''}
+          <br><small>${product.description?.substring(0, 50)}...</small>
+        </td>
         <td><span class="category-badge ${product.category.toLowerCase().replace(' ', '-')}">${product.category}</span></td>
         <td>$${product.price}</td>
         <td>${product.unit}</td>
@@ -271,6 +287,7 @@ import Layout from '../layouts/Layout.astro';
     (document.getElementById('product-image') as HTMLInputElement).value = '';
     (document.getElementById('product-image-data') as HTMLInputElement).value = '';
     (document.getElementById('product-image-path') as HTMLInputElement).value = '';
+    (document.getElementById('product-quick-pickup') as HTMLInputElement).checked = false;
     updateImagePreview('');
     productModal!.style.display = 'flex';
   });
@@ -290,6 +307,7 @@ import Layout from '../layouts/Layout.astro';
     (document.getElementById('product-image-path') as HTMLInputElement).value = product.image || '';
     (document.getElementById('product-image-data') as HTMLInputElement).value = product.imageData || '';
     (document.getElementById('product-emoji') as HTMLInputElement).value = product.emoji || '';
+    (document.getElementById('product-quick-pickup') as HTMLInputElement).checked = product.quickPickup || false;
 
     // Update preview
     updateImagePreview(product.imageData || product.image || '');
@@ -454,7 +472,8 @@ import Layout from '../layouts/Layout.astro';
       unit: (document.getElementById('product-unit') as HTMLInputElement).value,
       description: (document.getElementById('product-description') as HTMLTextAreaElement).value,
       image: imagePath || '',
-      emoji: (document.getElementById('product-emoji') as HTMLInputElement).value
+      emoji: (document.getElementById('product-emoji') as HTMLInputElement).value,
+      quickPickup: (document.getElementById('product-quick-pickup') as HTMLInputElement).checked
     };
 
     // If we have base64 image data, store it
@@ -672,6 +691,18 @@ import Layout from '../layouts/Layout.astro';
     color: #e65100;
   }
 
+  .quick-pickup-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-terracotta) 0%, #d4764e 100%);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
   .actions-cell {
     white-space: nowrap;
   }
@@ -791,6 +822,66 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .form-group small {
+    color: var(--color-earth);
+    font-size: 0.85rem;
+  }
+
+  /* Checkbox styling */
+  .checkbox-group {
+    margin-top: var(--spacing-sm);
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    border-radius: 12px;
+    gap: 12px;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-custom {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border: 2px solid var(--color-terracotta);
+    border-radius: 6px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+    background: var(--color-terracotta);
+    border-color: var(--color-terracotta);
+  }
+
+  .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: "✓";
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .checkbox-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .checkbox-text strong {
+    color: var(--color-sage-dark);
+    font-size: 1rem;
+  }
+
+  .checkbox-text small {
     color: var(--color-earth);
     font-size: 0.85rem;
   }
