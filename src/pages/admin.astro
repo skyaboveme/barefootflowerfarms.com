@@ -20,6 +20,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="admin-actions">
         <button id="add-product-btn" class="btn btn-primary">+ Add Product</button>
         <button id="export-btn" class="btn btn-secondary">Export JSON</button>
+        <button id="export-images-btn" class="btn btn-secondary">Download Images</button>
         <button id="logout-btn" class="btn btn-outline">Logout</button>
       </div>
     </header>
@@ -83,14 +84,38 @@ import Layout from '../layouts/Layout.astro';
             <textarea id="product-description" rows="3"></textarea>
           </div>
 
+          <!-- Image Section -->
           <div class="form-group">
-            <label for="product-image">Image Path</label>
-            <input type="text" id="product-image" placeholder="/Images/filename.jpeg" />
-            <small>Leave empty to use emoji instead</small>
+            <label>Product Image</label>
+            <div class="image-options">
+              <div class="image-preview-container">
+                <div id="image-preview" class="image-preview">
+                  <span class="preview-placeholder">No image</span>
+                </div>
+              </div>
+
+              <div class="image-buttons">
+                <label class="btn btn-secondary upload-btn">
+                  <input type="file" id="image-upload" accept="image/*" style="display: none;" />
+                  Upload Image
+                </label>
+                <button type="button" id="generate-image-btn" class="btn btn-accent">
+                  Generate Image
+                </button>
+              </div>
+
+              <input type="hidden" id="product-image" />
+              <input type="hidden" id="product-image-data" />
+
+              <div class="image-path-input">
+                <label for="product-image-path">Or enter image path:</label>
+                <input type="text" id="product-image-path" placeholder="/Images/filename.jpeg" />
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="product-emoji">Emoji (if no image)</label>
+            <label for="product-emoji">Emoji (fallback if no image)</label>
             <input type="text" id="product-emoji" placeholder="🌸" maxlength="4" />
           </div>
 
@@ -101,6 +126,39 @@ import Layout from '../layouts/Layout.astro';
         </form>
       </div>
     </div>
+
+    <!-- Image Generation Modal -->
+    <div id="generate-modal" class="modal" style="display: none;">
+      <div class="modal-content generate-modal-content">
+        <div class="modal-header">
+          <h2>Generate Flower Image</h2>
+          <button id="close-generate-modal" class="close-btn">&times;</button>
+        </div>
+        <div class="generate-content">
+          <p>Generate an AI image based on the flower name and description. This uses a free image API to create a placeholder image.</p>
+
+          <div class="form-group">
+            <label for="generate-prompt">Image Description</label>
+            <textarea id="generate-prompt" rows="3" placeholder="Beautiful pink zinnias in a rustic vase, natural lighting, flower farm style"></textarea>
+          </div>
+
+          <div class="generate-preview">
+            <div id="generated-image-preview" class="image-preview">
+              <span class="preview-placeholder">Preview will appear here</span>
+            </div>
+          </div>
+
+          <div class="generate-options">
+            <button type="button" id="do-generate-btn" class="btn btn-primary">Generate Preview</button>
+            <button type="button" id="use-generated-btn" class="btn btn-accent" disabled>Use This Image</button>
+          </div>
+
+          <p class="generate-note">
+            <strong>Note:</strong> Generated images are placeholders. For best results, upload your own photos of your beautiful flowers!
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>
 
@@ -108,7 +166,8 @@ import Layout from '../layouts/Layout.astro';
   // Simple password (in production, use proper authentication)
   const ADMIN_PASSWORD = 'barefoot2024';
 
-  let products = [];
+  let products: any[] = [];
+  let uploadedImages: { [key: string]: string } = {}; // Store base64 images by filename
 
   // DOM Elements
   const loginScreen = document.getElementById('login-screen');
@@ -119,6 +178,7 @@ import Layout from '../layouts/Layout.astro';
   const productModal = document.getElementById('product-modal');
   const productForm = document.getElementById('product-form');
   const modalTitle = document.getElementById('modal-title');
+  const generateModal = document.getElementById('generate-modal');
 
   // Check if already logged in
   if (sessionStorage.getItem('adminLoggedIn') === 'true') {
@@ -171,7 +231,9 @@ import Layout from '../layouts/Layout.astro';
         <td class="product-image-cell">
           ${product.image
             ? `<img src="${product.image}" alt="${product.name}" />`
-            : `<span class="emoji">${product.emoji || '🌸'}</span>`}
+            : product.imageData
+              ? `<img src="${product.imageData}" alt="${product.name}" />`
+              : `<span class="emoji">${product.emoji || '🌸'}</span>`}
         </td>
         <td><strong>${product.name}</strong><br><small>${product.description?.substring(0, 50)}...</small></td>
         <td><span class="category-badge ${product.category.toLowerCase().replace(' ', '-')}">${product.category}</span></td>
@@ -206,6 +268,10 @@ import Layout from '../layouts/Layout.astro';
     modalTitle!.textContent = 'Add Product';
     productForm!.reset();
     (document.getElementById('product-id') as HTMLInputElement).value = '';
+    (document.getElementById('product-image') as HTMLInputElement).value = '';
+    (document.getElementById('product-image-data') as HTMLInputElement).value = '';
+    (document.getElementById('product-image-path') as HTMLInputElement).value = '';
+    updateImagePreview('');
     productModal!.style.display = 'flex';
   });
 
@@ -221,11 +287,139 @@ import Layout from '../layouts/Layout.astro';
     (document.getElementById('product-price') as HTMLInputElement).value = product.price;
     (document.getElementById('product-unit') as HTMLInputElement).value = product.unit;
     (document.getElementById('product-description') as HTMLTextAreaElement).value = product.description || '';
-    (document.getElementById('product-image') as HTMLInputElement).value = product.image || '';
+    (document.getElementById('product-image-path') as HTMLInputElement).value = product.image || '';
+    (document.getElementById('product-image-data') as HTMLInputElement).value = product.imageData || '';
     (document.getElementById('product-emoji') as HTMLInputElement).value = product.emoji || '';
+
+    // Update preview
+    updateImagePreview(product.imageData || product.image || '');
 
     productModal!.style.display = 'flex';
   }
+
+  // Update image preview
+  function updateImagePreview(src: string) {
+    const preview = document.getElementById('image-preview')!;
+    if (src) {
+      preview.innerHTML = `<img src="${src}" alt="Preview" />`;
+    } else {
+      preview.innerHTML = '<span class="preview-placeholder">No image</span>';
+    }
+  }
+
+  // Handle image upload
+  document.getElementById('image-upload')?.addEventListener('change', (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64 = event.target?.result as string;
+      (document.getElementById('product-image-data') as HTMLInputElement).value = base64;
+      (document.getElementById('product-image-path') as HTMLInputElement).value = '';
+      updateImagePreview(base64);
+
+      // Store for later download
+      const filename = file.name.replace(/[^a-zA-Z0-9.-]/g, '-').toLowerCase();
+      uploadedImages[filename] = base64;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Handle image path input
+  document.getElementById('product-image-path')?.addEventListener('input', (e) => {
+    const path = (e.target as HTMLInputElement).value;
+    if (path) {
+      (document.getElementById('product-image-data') as HTMLInputElement).value = '';
+      updateImagePreview(path);
+    }
+  });
+
+  // Open generate modal
+  document.getElementById('generate-image-btn')?.addEventListener('click', () => {
+    const name = (document.getElementById('product-name') as HTMLInputElement).value;
+    const description = (document.getElementById('product-description') as HTMLTextAreaElement).value;
+    const category = (document.getElementById('product-category') as HTMLSelectElement).value;
+
+    // Create a prompt based on the product info
+    const prompt = `Beautiful ${name}, ${description || category}, natural lighting, flower farm photography style, rustic aesthetic`;
+    (document.getElementById('generate-prompt') as HTMLTextAreaElement).value = prompt;
+
+    // Reset preview
+    document.getElementById('generated-image-preview')!.innerHTML = '<span class="preview-placeholder">Preview will appear here</span>';
+    (document.getElementById('use-generated-btn') as HTMLButtonElement).disabled = true;
+
+    generateModal!.style.display = 'flex';
+  });
+
+  // Close generate modal
+  document.getElementById('close-generate-modal')?.addEventListener('click', () => {
+    generateModal!.style.display = 'none';
+  });
+
+  // Generate image preview
+  let generatedImageUrl = '';
+  document.getElementById('do-generate-btn')?.addEventListener('click', async () => {
+    const prompt = (document.getElementById('generate-prompt') as HTMLTextAreaElement).value;
+    const previewEl = document.getElementById('generated-image-preview')!;
+    const useBtn = document.getElementById('use-generated-btn') as HTMLButtonElement;
+
+    previewEl.innerHTML = '<span class="preview-placeholder">Generating...</span>';
+    useBtn.disabled = true;
+
+    try {
+      // Using Pollinations.ai - a free AI image generation API
+      const encodedPrompt = encodeURIComponent(prompt);
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=400&height=400&seed=${Date.now()}`;
+
+      // Preload the image
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        previewEl.innerHTML = `<img src="${imageUrl}" alt="Generated preview" />`;
+        generatedImageUrl = imageUrl;
+        useBtn.disabled = false;
+      };
+      img.onerror = () => {
+        previewEl.innerHTML = '<span class="preview-placeholder">Failed to generate. Try again.</span>';
+      };
+      img.src = imageUrl;
+    } catch (error) {
+      previewEl.innerHTML = '<span class="preview-placeholder">Error generating image</span>';
+    }
+  });
+
+  // Use generated image
+  document.getElementById('use-generated-btn')?.addEventListener('click', async () => {
+    if (!generatedImageUrl) return;
+
+    const useBtn = document.getElementById('use-generated-btn') as HTMLButtonElement;
+    useBtn.textContent = 'Converting...';
+    useBtn.disabled = true;
+
+    try {
+      // Convert to base64 for local storage
+      const response = await fetch(generatedImageUrl);
+      const blob = await response.blob();
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        (document.getElementById('product-image-data') as HTMLInputElement).value = base64;
+        (document.getElementById('product-image-path') as HTMLInputElement).value = '';
+        updateImagePreview(base64);
+        generateModal!.style.display = 'none';
+        useBtn.textContent = 'Use This Image';
+      };
+      reader.readAsDataURL(blob);
+    } catch (error) {
+      // If CORS blocks us, just use the URL directly
+      (document.getElementById('product-image-data') as HTMLInputElement).value = generatedImageUrl;
+      (document.getElementById('product-image-path') as HTMLInputElement).value = '';
+      updateImagePreview(generatedImageUrl);
+      generateModal!.style.display = 'none';
+      useBtn.textContent = 'Use This Image';
+    }
+  });
 
   // Delete product
   function deleteProduct(id: number) {
@@ -249,16 +443,28 @@ import Layout from '../layouts/Layout.astro';
     e.preventDefault();
 
     const id = (document.getElementById('product-id') as HTMLInputElement).value;
-    const product = {
+    const imageData = (document.getElementById('product-image-data') as HTMLInputElement).value;
+    const imagePath = (document.getElementById('product-image-path') as HTMLInputElement).value;
+
+    const product: any = {
       id: id ? parseInt(id) : Math.max(0, ...products.map(p => p.id)) + 1,
       name: (document.getElementById('product-name') as HTMLInputElement).value,
       category: (document.getElementById('product-category') as HTMLSelectElement).value,
       price: (document.getElementById('product-price') as HTMLInputElement).value,
       unit: (document.getElementById('product-unit') as HTMLInputElement).value,
       description: (document.getElementById('product-description') as HTMLTextAreaElement).value,
-      image: (document.getElementById('product-image') as HTMLInputElement).value,
+      image: imagePath || '',
       emoji: (document.getElementById('product-emoji') as HTMLInputElement).value
     };
+
+    // If we have base64 image data, store it
+    if (imageData && !imagePath) {
+      product.imageData = imageData;
+      // Create a filename for the image
+      const safeName = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      product.image = `/Images/${safeName}.jpg`;
+      uploadedImages[`${safeName}.jpg`] = imageData;
+    }
 
     if (id) {
       // Update existing
@@ -275,7 +481,13 @@ import Layout from '../layouts/Layout.astro';
 
   // Export JSON
   document.getElementById('export-btn')?.addEventListener('click', () => {
-    const dataStr = JSON.stringify({ products }, null, 2);
+    // Create a clean version without imageData for the JSON
+    const cleanProducts = products.map(p => {
+      const { imageData, ...clean } = p;
+      return clean;
+    });
+
+    const dataStr = JSON.stringify({ products: cleanProducts }, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
@@ -286,7 +498,37 @@ import Layout from '../layouts/Layout.astro';
 
     URL.revokeObjectURL(url);
 
-    alert('JSON exported! Upload this file to public/data/products.json in your GitHub repository to update the shop.');
+    alert('JSON exported! Upload this file to public/data/products.json in your GitHub repository.\n\nIf you uploaded images, also click "Download Images" to get them.');
+  });
+
+  // Export uploaded images
+  document.getElementById('export-images-btn')?.addEventListener('click', () => {
+    // Collect all images that need to be downloaded
+    const imagesToDownload: { filename: string; data: string }[] = [];
+
+    products.forEach(p => {
+      if (p.imageData && p.image) {
+        const filename = p.image.replace('/Images/', '');
+        imagesToDownload.push({ filename, data: p.imageData });
+      }
+    });
+
+    if (imagesToDownload.length === 0) {
+      alert('No new images to download. All products are using existing image paths.');
+      return;
+    }
+
+    // Download each image
+    imagesToDownload.forEach((img, index) => {
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = img.data;
+        a.download = img.filename;
+        a.click();
+      }, index * 500); // Stagger downloads
+    });
+
+    alert(`Downloading ${imagesToDownload.length} image(s). Upload them to the public/Images/ folder in your GitHub repository.`);
   });
 </script>
 
@@ -486,6 +728,10 @@ import Layout from '../layouts/Layout.astro';
     overflow-y: auto;
   }
 
+  .generate-modal-content {
+    max-width: 550px;
+  }
+
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -575,6 +821,123 @@ import Layout from '../layouts/Layout.astro';
     color: white;
   }
 
+  .btn-accent {
+    background: var(--color-terracotta);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .btn-accent:hover {
+    background: #a85d3b;
+  }
+
+  .btn-accent:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Image Options */
+  .image-options {
+    background: var(--color-cream);
+    padding: var(--spacing-sm);
+    border-radius: 12px;
+  }
+
+  .image-preview-container {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .image-preview {
+    width: 100%;
+    height: 150px;
+    background: var(--color-white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px dashed var(--color-sage);
+  }
+
+  .image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .preview-placeholder {
+    color: var(--color-earth);
+    font-size: 0.9rem;
+  }
+
+  .image-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .upload-btn {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .image-buttons .btn {
+    flex: 1;
+  }
+
+  .image-path-input {
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-white);
+  }
+
+  .image-path-input label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  /* Generate Modal */
+  .generate-content {
+    padding: var(--spacing-md);
+  }
+
+  .generate-content > p {
+    color: var(--color-earth);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+  }
+
+  .generate-preview {
+    margin: var(--spacing-md) 0;
+  }
+
+  .generate-preview .image-preview {
+    height: 250px;
+  }
+
+  .generate-options {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .generate-options .btn {
+    flex: 1;
+  }
+
+  .generate-note {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--color-blush);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--color-earth);
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .admin-header {
@@ -588,6 +951,10 @@ import Layout from '../layouts/Layout.astro';
 
     .form-row {
       grid-template-columns: 1fr;
+    }
+
+    .image-buttons {
+      flex-direction: column;
     }
   }
 </style>
