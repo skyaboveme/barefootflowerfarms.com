@@ -32,8 +32,7 @@ const {
     <header class="site-header">
       <nav class="main-nav">
         <a href="/" class="logo">
-          <span class="logo-icon">🌸</span>
-          <span class="logo-text">Barefoot Flower Farms</span>
+          <img src="/logo.png" alt="Barefoot Flower Farms" class="logo-image" />
         </a>
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
@@ -240,19 +239,13 @@ const {
   .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-sage-dark);
+    height: 60px; /* Adjust based on navbar height */
   }
 
-  .logo:hover {
-    color: var(--color-sage);
-  }
-
-  .logo-icon {
-    font-size: 2rem;
+  .logo-image {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
   }
 
   .nav-links {
