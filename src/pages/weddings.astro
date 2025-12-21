@@ -1,0 +1,515 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Weddings & Events - Barefoot Flower Farms"
+    description="Celebrate your special day with locally grown, seasonal blooms. Full service floral design, a la carte options, and DIY flower buckets available."
+>
+    <section class="page-hero">
+        <div class="hero-bg">
+            <img
+                src="/Images/wedding-hero.png"
+                alt="Outdoor wedding ceremony overlooking the valley"
+            />
+        </div>
+        <div class="container">
+            <h1>Weddings & Events</h1>
+            <p class="page-subtitle">
+                Grown with love, arranged with intention
+            </p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <p class="lead-text">
+                    Your love story is unique, and your flowers should be too.
+                    We specialize in garden-style floral design using blooms
+                    grown right here on our farm in Rosanky, Texas. From
+                    intimate gatherings to grand celebrations, we bring the best
+                    of the season to your special day.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2>Our Style</h2>
+            <div class="masonry-grid">
+                <div class="grid-item tall">
+                    <img
+                        src="/Images/wedding-bouquet.png"
+                        alt="Bridal bouquet with zinnias and eucalyptus"
+                    />
+                </div>
+                <div class="grid-item">
+                    <img
+                        src="/Images/wedding-table.png"
+                        alt="Rustic reception table setting"
+                    />
+                </div>
+                <div class="grid-item">
+                    <img
+                        src="/Images/pink-zinnias-bouquet-field.jpeg"
+                        alt="Fresh cut zinnias"
+                    />
+                </div>
+                <div class="grid-item tall">
+                    <img
+                        src="/Images/white-dahlia-arrangement-mason-jar.jpeg"
+                        alt="White dahlia centerpiece"
+                    />
+                </div>
+                <div class="grid-item">
+                    <img
+                        src="/Images/colorful-mixed-bouquet-vase.jpeg"
+                        alt="Mixed seasonal bouquet"
+                    />
+                </div>
+                <div class="grid-item">
+                    <img
+                        src="/Images/wedding-hero.png"
+                        alt="Wedding arbor details"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2>Ways to Work With Us</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-header">
+                        <h3>Full Service Design</h3>
+                        <span class="price-range">Starting at $2,500</span>
+                    </div>
+                    <p>
+                        We take care of everything from the initial consultation
+                        to delivery and setup. Includes bouquets, boutonnieres,
+                        ceremony installations (arbors, aisle markers), and
+                        reception centerpieces. Perfect for couples who want a
+                        cohesive, stress-free floral experience.
+                    </p>
+                    <ul class="feature-list">
+                        <li>In-depth consultation & design proposal</li>
+                        <li>Bridal party personal flowers</li>
+                        <li>Ceremony & Reception decor</li>
+                        <li>Delivery, Setup, and Strike</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <h3>A La Carte</h3>
+                        <span class="price-range">Starting at $500</span>
+                    </div>
+                    <p>
+                        Ideal for couples who need personal flowers (bouquets,
+                        boutonnieres) and simple centerpieces but don't require
+                        large on-site installations. You choose from our
+                        verified menu of items, and we create them in our
+                        signature garden style.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Simplified ordering process</li>
+                        <li>Bridal bouquets & party flowers</li>
+                        <li>Table centerpieces</li>
+                        <li>Farm pickup (delivery available)</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <h3>DIY Buckets</h3>
+                        <span class="price-range">$85 / bucket</span>
+                    </div>
+                    <p>
+                        For the creative couple who wants to arrange their own
+                        flowers! We harvest the best of what's blooming that
+                        week and condition them for you. Each bucket contains
+                        50-60 stems of focal flowers, fillers, and foliage.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Grower's choice color palettes</li>
+                        <li>50-60 stems per bucket</li>
+                        <li>Conditioned and ready to arrange</li>
+                        <li>Strictly farm pickup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inquiry-section">
+        <div class="container">
+            <div class="form-wrapper">
+                <h2>Inquire for Your Date</h2>
+                <p>
+                    We take a limited number of weddings each season to ensure
+                    every couple gets our full attention. Fill out the form
+                    below to check availability and start the conversation.
+                </p>
+
+                <form
+                    class="inquiry-form"
+                    name="wedding-inquiry"
+                    method="POST"
+                    data-netlify="true"
+                >
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="partner-name">Partner's Name</label>
+                            <input
+                                type="text"
+                                id="partner-name"
+                                name="partner-name"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Event Date *</label>
+                            <input type="date" id="date" name="date" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="venue">Venue / Location</label>
+                            <input type="text" id="venue" name="venue" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-type">Interested In *</label>
+                        <select id="service-type" name="service-type" required>
+                            <option value="">Select an option...</option>
+                            <option value="Full Service"
+                                >Full Service Design</option
+                            >
+                            <option value="A La Carte">A La Carte</option>
+                            <option value="DIY Buckets">DIY Buckets</option>
+                            <option value="Unsure">Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vibe"
+                            >Tell us about your wedding vision (colors, style,
+                            vibes)</label
+                        >
+                        <textarea id="vibe" name="vibe" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        >Send Inquiry</button
+                    >
+                </form>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* Hero Section */
+    .page-hero {
+        position: relative;
+        color: var(--color-cream);
+        padding: var(--spacing-xl) var(--spacing-md);
+        text-align: center;
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+
+    .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-bg::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(82, 82, 82, 0.4) 0%,
+            rgba(45, 45, 45, 0.4) 100%
+        );
+    }
+
+    .page-hero .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .page-hero h1 {
+        color: var(--color-white);
+        margin-bottom: var(--spacing-xs);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-subtitle {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.5rem;
+        color: var(--color-cream);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Intro Section */
+    .intro-section {
+        padding: var(--spacing-xl) 0;
+        text-align: center;
+        background: var(--color-white);
+    }
+
+    .intro-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .lead-text {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--color-earth);
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+        padding-bottom: var(--spacing-xl);
+    }
+
+    .gallery-section h2 {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: 250px;
+        gap: var(--spacing-md);
+    }
+
+    .grid-item {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .grid-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .grid-item.tall {
+        grid-row: span 2;
+    }
+
+    @media (max-width: 768px) {
+        .masonry-grid {
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+        }
+        .grid-item.tall {
+            grid-row: auto;
+        }
+        .grid-item {
+            height: 300px;
+        }
+    }
+
+    /* Services Section */
+    .services-section {
+        padding: var(--spacing-xl) 0;
+        background: var(--color-cream);
+    }
+
+    .services-section h2 {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .service-card {
+        background: var(--color-white);
+        padding: var(--spacing-md);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-header {
+        margin-bottom: var(--spacing-md);
+        padding-bottom: var(--spacing-xs);
+        border-bottom: 2px solid var(--color-blush);
+    }
+
+    .service-card h3 {
+        margin: 0 0 5px 0;
+        color: var(--color-sage-dark);
+    }
+
+    .price-range {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--color-terracotta);
+    }
+
+    .service-card p {
+        color: var(--color-earth);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-top: auto;
+    }
+
+    .feature-list li {
+        padding: 5px 0 5px 1.5rem;
+        position: relative;
+        color: var(--color-charcoal);
+        font-size: 0.95rem;
+    }
+
+    .feature-list li::before {
+        content: "•";
+        color: var(--color-sage);
+        position: absolute;
+        left: 0;
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
+    /* Inquiry Section */
+    .inquiry-section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .form-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--color-blush);
+        padding: var(--spacing-lg);
+        border-radius: 20px;
+    }
+
+    .form-wrapper h2 {
+        text-align: center;
+        color: var(--color-sage-dark);
+    }
+
+    .form-wrapper > p {
+        text-align: center;
+        color: var(--color-charcoal);
+        margin-bottom: var(--spacing-md);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .inquiry-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--color-charcoal);
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 2px solid var(--color-sage);
+        background: var(--color-white);
+    }
+
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+        .form-wrapper {
+            padding: var(--spacing-md);
+        }
+    }
+</style>

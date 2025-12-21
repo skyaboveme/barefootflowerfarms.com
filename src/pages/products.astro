@@ -1,17 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import fs from 'node:fs';
-import path from 'node:path';
+import Layout from "../layouts/Layout.astro";
+import fs from "node:fs";
+import path from "node:path";
 
 // Read products from JSON file at build time
-const jsonPath = path.join(process.cwd(), 'public/data/products.json');
-const data = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+const jsonPath = path.join(process.cwd(), "public/data/products.json");
+const data = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
 const products = data.products;
 
-const categories = [...new Set(products.map(p => p.category))];
+const categories = [...new Set(products.map((p) => p.category))];
 ---
 
-<Layout title="Shop - Barefoot Flower Farms" description="Browse our selection of fresh-cut flowers, plants, and seeds. All grown locally with sustainable practices.">
+<Layout
+  title="Shop - Barefoot Flower Farms"
+  description="Browse our selection of fresh-cut flowers, plants, and seeds. All grown locally with sustainable practices."
+>
   <section class="page-hero">
     <div class="container">
       <h1>Our Flowers</h1>
@@ -23,37 +26,44 @@ const categories = [...new Set(products.map(p => p.category))];
     <div class="container">
       <div class="intro-text">
         <p>
-          Everything we sell is grown right here on our farm using sustainable practices.
-          Our flowers are cut fresh and our plants are nurtured with care. Availability
-          varies by season, so contact us to confirm what's currently blooming.
+          Everything we sell is grown right here on our farm using sustainable
+          practices. Our flowers are cut fresh and our plants are nurtured with
+          care. Availability varies by season, so contact us to confirm what's
+          currently blooming.
         </p>
       </div>
 
-      {categories.map(category => (
-        <div class="category-section">
-          <h2>{category}</h2>
-          <div class="products-grid">
-            {products.filter(p => p.category === category).map(product => (
-              <div class="product-card">
-                <div class="product-image">
-                  {product.image ? (
-                    <img src={product.image} alt={product.name} />
-                  ) : (
-                    <span class="product-emoji">{product.emoji}</span>
-                  )}
-                </div>
-                <div class="product-info">
-                  <h3>{product.name}</h3>
-                  <p class="product-description">{product.description}</p>
-                  <div class="product-footer">
-                    <span class="price">${product.price} / {product.unit}</span>
+      {
+        categories.map((category) => (
+          <div class="category-section">
+            <h2>{category}</h2>
+            <div class="products-grid">
+              {products
+                .filter((p) => p.category === category)
+                .map((product) => (
+                  <div class="product-card">
+                    <div class="product-image">
+                      {product.image ? (
+                        <img src={product.image} alt={product.name} />
+                      ) : (
+                        <span class="product-emoji">{product.emoji}</span>
+                      )}
+                    </div>
+                    <div class="product-info">
+                      <h3>{product.name}</h3>
+                      <p class="product-description">{product.description}</p>
+                      <div class="product-footer">
+                        <span class="price">
+                          ${product.price} / {product.unit}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
 
       <div class="ordering-info">
         <h2>How to Order</h2>
@@ -61,7 +71,10 @@ const categories = [...new Set(products.map(p => p.category))];
           <div class="info-card">
             <div class="info-icon">📞</div>
             <h3>Contact Us</h3>
-            <p>Reach out via phone, email, or our contact form to place your order.</p>
+            <p>
+              Reach out via phone, email, or our contact form to place your
+              order.
+            </p>
           </div>
           <div class="info-card">
             <div class="info-icon">📅</div>
@@ -71,7 +84,9 @@ const categories = [...new Set(products.map(p => p.category))];
           <div class="info-card">
             <div class="info-icon">🚗</div>
             <h3>Local Delivery</h3>
-            <p>We offer delivery within 15 miles of our farm for orders over $50.</p>
+            <p>
+              We offer delivery within 15 miles of our farm for orders over $50.
+            </p>
           </div>
         </div>
       </div>
@@ -83,7 +98,7 @@ const categories = [...new Set(products.map(p => p.category))];
           We love working on custom orders! Contact us to discuss your needs and
           we'll create something beautiful just for you.
         </p>
-        <a href="/contact" class="btn btn-primary">Get a Quote</a>
+        <a href="/weddings" class="btn btn-primary">View Wedding Services</a>
       </div>
     </div>
   </section>
@@ -91,7 +106,11 @@ const categories = [...new Set(products.map(p => p.category))];
 
 <style>
   .page-hero {
-    background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-earth) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-terracotta) 0%,
+      var(--color-earth) 100%
+    );
     color: var(--color-cream);
     padding: var(--spacing-xl) var(--spacing-md);
     text-align: center;
@@ -147,7 +166,9 @@ const categories = [...new Set(products.map(p => p.category))];
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .product-card:hover {
@@ -156,7 +177,11 @@ const categories = [...new Set(products.map(p => p.category))];
   }
 
   .product-image {
-    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-rose) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-blush) 0%,
+      var(--color-rose) 100%
+    );
     height: 200px;
     overflow: hidden;
     display: flex;

@@ -1,5 +1,5 @@
 ---
-import BouquetPopup from '../components/BouquetPopup.astro';
+import BouquetPopup from "../components/BouquetPopup.astro";
 
 interface Props {
   title?: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = "Barefoot Flower Farms",
-  description = "Beautiful flowers and plants grown with love. Your local garden nursery for fresh blooms, plants, and gardening supplies."
+  description = "Beautiful flowers and plants grown with love. Your local garden nursery for fresh blooms, plants, and gardening supplies.",
 } = Astro.props;
 ---
 
@@ -21,9 +21,12 @@ const {
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="site-header">
@@ -35,6 +38,7 @@ const {
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/visit">Visit</a></li>
+          <li><a href="/weddings">Weddings</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/products">Shop</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -55,7 +59,12 @@ const {
         <div class="footer-section">
           <h4>Find Us</h4>
           <p>
-            <a href="https://www.google.com/maps/place/String+Prairie+Gardens+%26+Barefoot+Flower+Farm/@29.921331,-97.358209,15z" target="_blank" rel="noopener noreferrer" style="color: var(--color-blush);">
+            <a
+              href="https://www.google.com/maps/place/String+Prairie+Gardens+%26+Barefoot+Flower+Farm/@29.921331,-97.358209,15z"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: var(--color-blush);"
+            >
               View on Google Maps
             </a>
           </p>
@@ -68,13 +77,21 @@ const {
           <h4>Connect</h4>
           <div class="social-links">
             <a href="#" aria-label="Instagram">📷</a>
-            <a href="https://www.facebook.com/profile.php?id=61565878812536" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61565878812536"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook">📘</a
+            >
             <a href="#" aria-label="Pinterest">📌</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} String Prairie Gardens & Barefoot Flower Farm. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} String Prairie Gardens & Barefoot Flower
+          Farm. All rights reserved.
+        </p>
       </div>
     </footer>
 
@@ -94,8 +111,8 @@ const {
     --color-charcoal: #3d3d3d;
     --color-white: #ffffff;
 
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Lato", -apple-system, BlinkMacSystemFont, sans-serif;
 
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -121,7 +138,12 @@ const {
     font-weight: 300;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
     font-weight: 600;
     line-height: 1.2;
@@ -252,7 +274,7 @@ const {
   }
 
   .nav-links a::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -309,7 +331,9 @@ const {
   .social-links a {
     font-size: 1.5rem;
     opacity: 0.8;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 
   .social-links a:hover {
