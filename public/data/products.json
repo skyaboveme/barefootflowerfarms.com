@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Mixed Zinnias",
-      "image": "/Images/pink-zinnias-bouquet-field.jpeg",
+      "image": "/Images/IMG_1090.jpeg",
       "description": "Bold, vibrant blooms in pinks, reds, and oranges. Perfect for summer arrangements.",
       "price": "16.99",
       "unit": "bunch",
@@ -12,7 +12,7 @@
     {
       "id": 2,
       "name": "Snapdragons",
-      "image": "/Images/snapdragons-garden-rows.jpeg",
+      "image": "/Images/IMG_1124.jpeg",
       "description": "Tall, elegant spikes in beautiful sunset colors.",
       "price": "18.99",
       "unit": "bunch",
@@ -21,7 +21,7 @@
     {
       "id": 3,
       "name": "Mixed Bouquet",
-      "image": "/Images/colorful-mixed-bouquet-vase.jpeg",
+      "image": "/Images/IMG_1092.jpeg",
       "description": "A stunning arrangement of seasonal blooms, professionally designed.",
       "price": "45.99",
       "unit": "arrangement",
@@ -30,7 +30,7 @@
     {
       "id": 4,
       "name": "Spring Mix",
-      "image": "/Images/spring-bouquet-snapdragons-larkspur.jpeg",
+      "image": "/Images/IMG_1090.jpeg",
       "description": "Delicate spring flowers including larkspur and cosmos.",
       "price": "28.99",
       "unit": "bunch",
@@ -39,7 +39,7 @@
     {
       "id": 5,
       "name": "Cosmos Bouquet",
-      "image": "/Images/pink-wrapped-cosmos-bouquet.jpeg",
+      "image": "/Images/IMG_1092.jpeg",
       "description": "Soft, romantic cosmos in pink wrapping, perfect for gifts.",
       "price": "22.99",
       "unit": "bunch",
@@ -48,7 +48,7 @@
     {
       "id": 6,
       "name": "Clematis",
-      "image": "/Images/pink-clematis-vine-blooms.jpeg",
+      "image": "/Images/IMG_1124.jpeg",
       "description": "Stunning pink vine flowers for elegant arrangements.",
       "price": "32.99",
       "unit": "dozen",
@@ -57,7 +57,7 @@
     {
       "id": 7,
       "name": "Nasturtiums & Orchids",
-      "image": "/Images/nasturtium-orchid-colorful-bouquet.jpeg",
+      "image": "/Images/IMG_2836.jpeg",
       "description": "Bright, edible nasturtiums mixed with tropical orchids.",
       "price": "24.99",
       "unit": "bunch",
@@ -66,7 +66,7 @@
     {
       "id": 8,
       "name": "White Dahlias",
-      "image": "/Images/white-dahlia-arrangement-mason-jar.jpeg",
+      "image": "/Images/IMG_2834.jpeg",
       "description": "Classic white blooms with delicate greenery.",
       "price": "28.99",
       "unit": "bunch",
@@ -75,8 +75,7 @@
     {
       "id": 9,
       "name": "Herb Seedlings",
-      "image": "",
-      "emoji": "🌿",
+      "image": "/Images/IMG_1867.jpeg",
       "description": "Basil, rosemary, thyme, and more. Ready to plant.",
       "price": "4.99",
       "unit": "pot",
@@ -85,8 +84,7 @@
     {
       "id": 10,
       "name": "Tomato Starts",
-      "image": "",
-      "emoji": "🍅",
+      "image": "/Images/IMG_1857.jpeg",
       "description": "Heirloom varieties ready for your garden.",
       "price": "5.99",
       "unit": "pot",
@@ -95,8 +93,7 @@
     {
       "id": 11,
       "name": "Pollinator Garden Mix",
-      "image": "",
-      "emoji": "🐝",
+      "image": "/Images/IMG_2840.jpeg",
       "description": "Seeds for a garden that attracts bees and butterflies.",
       "price": "12.99",
       "unit": "packet",
@@ -105,8 +102,7 @@
     {
       "id": 12,
       "name": "Wildflower Seeds",
-      "image": "",
-      "emoji": "🌼",
+      "image": "/Images/IMG_1857.jpeg",
       "description": "Native wildflower mix for natural meadow gardens.",
       "price": "9.99",
       "unit": "packet",
