@@ -145,6 +145,28 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </section>
 
+    <section class="venue-partner">
+        <div class="container">
+            <div class="venue-card">
+                <div class="venue-icon">🏡</div>
+                <h2>Our Venue Partner</h2>
+                <h3>Rock Hill Ranch</h3>
+                <p>
+                    Looking for the perfect venue for your special day? We proudly partner with
+                    Rock Hill Ranch — a stunning event destination right here in our community.
+                    Pair their beautiful grounds with our fresh, farm-grown floral design for an
+                    unforgettable celebration.
+                </p>
+                <a
+                    href="https://www.facebook.com/visitrockhillranch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                >Visit Rock Hill Ranch on Facebook</a>
+            </div>
+        </div>
+    </section>
+
     <section class="inquiry-section">
         <div class="container">
             <div class="form-wrapper">
@@ -433,6 +455,43 @@ import Layout from "../layouts/Layout.astro";
         left: 0;
         font-size: 1.2rem;
         line-height: 1;
+    }
+
+    /* Venue Partner Section */
+    .venue-partner {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .venue-card {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-cream) 100%);
+        padding: var(--spacing-lg);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .venue-icon {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .venue-card h2 {
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .venue-card h3 {
+        color: var(--color-terracotta);
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .venue-card p {
+        color: var(--color-earth);
+        line-height: 1.8;
+        max-width: 550px;
+        margin: 0 auto var(--spacing-md);
     }
 
     /* Inquiry Section */
