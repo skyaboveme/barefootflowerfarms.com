@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
         Discover fresh-cut flowers, heirloom plants, and the joy of bringing nature home.
       </p>
       <div class="hero-buttons">
-        <a href="/products" class="btn btn-primary">Shop Our Blooms</a>
+        <a href="/visit" class="btn btn-primary">Visit Our Farm</a>
         <a href="/about" class="btn btn-secondary">Our Story</a>
       </div>
     </div>
@@ -55,50 +55,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Seasonal Highlights -->
-  <section class="seasonal">
-    <div class="container">
-      <h2 class="section-title">Seasonal Favorites</h2>
-      <p class="section-subtitle">Discover what's blooming in our gardens right now</p>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-image">
-            <img src="/Images/IMG_1090.jpeg" alt="Sunshine yellow ranunculus bouquet arranged by Barefoot Flower Farm" loading="lazy" decoding="async" />
-          </div>
-          <h3>Mixed Zinnias</h3>
-          <p>Vibrant, colorful zinnias perfect for any occasion</p>
-          <span class="price">$24.99 / bunch</span>
-        </div>
-        <div class="product-card">
-          <div class="product-image">
-            <img src="/Images/IMG_1124.jpeg" alt="Vibrant lilies, chrysanthemums and snapdragons in a ceramic vase" loading="lazy" decoding="async" />
-          </div>
-          <h3>Snapdragons</h3>
-          <p>Tall, elegant blooms in sunset colors</p>
-          <span class="price">$18.99 / bunch</span>
-        </div>
-        <div class="product-card">
-          <div class="product-image">
-            <img src="/Images/IMG_1092.jpeg" alt="Blush pink roses and ranunculus hand-tied bouquet" loading="lazy" decoding="async" />
-          </div>
-          <h3>Clematis</h3>
-          <p>Stunning pink vine flowers for elegant arrangements</p>
-          <span class="price">$32.99 / dozen</span>
-        </div>
-        <div class="product-card">
-          <div class="product-image">
-            <img src="/Images/IMG_2834.jpeg" alt="Curated display of roses, hydrangeas and seasonal blooms in rustic vases" loading="lazy" decoding="async" />
-          </div>
-          <h3>White Dahlias</h3>
-          <p>Classic white blooms with delicate greenery</p>
-          <span class="price">$28.99 / bunch</span>
-        </div>
-      </div>
-      <div class="section-cta">
-        <a href="/products" class="btn btn-primary">View All Products</a>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Testimonial Section -->
   <section class="testimonial">
@@ -346,64 +303,7 @@ import Layout from '../layouts/Layout.astro';
     margin: 0;
   }
 
-  /* Seasonal/Products Section */
-  .seasonal {
-    background: var(--color-white);
-    padding: var(--spacing-xl) 0;
-  }
 
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-  }
-
-  .product-card {
-    background: var(--color-cream);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .product-image {
-    overflow: hidden;
-    height: 200px;
-  }
-
-  .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .product-card:hover .product-image img {
-    transform: scale(1.1);
-  }
-
-  .product-card h3 {
-    padding: var(--spacing-sm) var(--spacing-sm) 0;
-    margin: 0;
-  }
-
-  .product-card p {
-    padding: 0 var(--spacing-sm);
-    color: var(--color-earth);
-    font-size: 0.95rem;
-  }
-
-  .price {
-    display: block;
-    padding: var(--spacing-sm);
-    color: var(--color-terracotta);
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
 
   /* Testimonial Section */
   .testimonial {
